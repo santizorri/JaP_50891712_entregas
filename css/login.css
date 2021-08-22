@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  background: linear-gradient(to bottom, #1c91ca, rgb(95, 194, 230));
+  
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+h3 {
+  padding: 5%;
+}
+
+.myFormat {
+  border-radius: 20px;
+  border-style: groove;
+  border-color: -moz-linear-gradient(to top, #1c91ca, rgb(43, 185, 233));
+  background: lightblue;
+  margin-inline: 40%;
+}
+
+.signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 45px;
+  margin: auto;
+}
+
+.isValid {
+  background-color: lightgreen;
+  border-color: green;
+  border-width: thick;
+}
+
+.isInvalid {
+  background-color: pink;
+  border-color: red;
+  border-width: thick;
+}
