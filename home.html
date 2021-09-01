@@ -16,7 +16,6 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="744285213049-kflhhug8nuks38b1r6vdq07ejqt93aio.apps.googleusercontent.com">
     
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
   </head>
   <body>
@@ -116,6 +115,7 @@
     <script src="js/init.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/google.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script>let usuario = JSON.parse( localStorage.getItem("usuario"));
       document.getElementById('nombre').innerHTML= "<img src=" + usuario.imagen + " width=20>  " + usuario.nombre;</script>
   </body>
