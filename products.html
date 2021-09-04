@@ -12,6 +12,9 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+     <!--Google-->
+     <meta name="google-signin-scope" content="profile email">
+     <meta name="google-signin-client_id" content="744285213049-kflhhug8nuks38b1r6vdq07ejqt93aio.apps.googleusercontent.com">
   </head>
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
@@ -21,13 +24,61 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <!-- Agrego el usuario que se conecta con su foto (en caso de entrar con google la foto) -->
+        <a class="py-2 d-none d-md-inline-block"><span class="btn btn-info"id="nombre"></span> </a>
       </div>
     </nav>
     
     <main role="main" class="pb-5">
         <div class="text-center p-4">
             <h2>Listado</h2>
+            <p class="lead">Verás aquí todos los productos del sitio.</p>
         </div>
+        <!-- Este codigo fue reeditado del html de categories-->
+        <div class="container">
+          <div class="row">
+              <div class="col text-center">
+                  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                      <label class="btn btn-light active" id="Asc" >
+                          <input type="radio" name="options" autocomplete="off" checked>Mayor precio
+                      </label>
+                      <label class="btn btn-light" id="Desc" >
+                          <input type="radio" name="options" autocomplete="off">Menor precio
+                      </label>
+                      <label class="btn btn-light" id="relevancia" >
+                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
+                      </label>
+                  </div>
+              </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-md-6"></div>
+              <div>
+                <div class="row container p-0 m-0">
+                  <div>
+                    <p class="font-weight-normal text-right my-2">Buscar:</p>  
+                    </div>
+                    <div class="col">
+                      <input class="form-control" type="search" id="buscador" placeholder="Buscar Articulo">
+                    </div>
+                  <div>
+                    <p class="font-weight-normal text-right my-2">Precio:</p>  
+                    </div>
+                    <div class="col">
+                      <input class="form-control" type="number" placeholder="min." id="cantidadMin" value="0">
+                    </div>
+                  <div class="col">
+                    <input class="form-control" type="number" placeholder="máx." id="cantidadMax" value="99999">
+                  </div>
+                  <div class="col-3 p-0">
+                    <div class="btn-group" role="group">
+                      <button class="btn btn-light btn-block" id="rangoPrecios" onclick="showCategoriesList()">Filtrar</button>
+                      <button class="btn btn-link btn-sm" id="limpiarfiltro">Limpiar</button>
+                    </div>
+                  </div>
+                </div><br>
+              </div>
+          </div>
         <div class="container">
             <div class="row">
                 <div class="list-group" id="cat-list-container">
@@ -53,7 +104,7 @@
           <a href="#">Volver arriba</a>
         </p>
         <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio. <button class="btn btn-danger btn-lg" style="float: right;" onclick="desconectar();">Desconectar</button></p>
       </div>
     </footer>
     <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
@@ -61,5 +112,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/google.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
   </body>
 </html>

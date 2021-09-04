@@ -45,3 +45,9 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+//Este es el codigo para obetener los datos de usuario e imagen
+
+let usuario = JSON.parse( localStorage.getItem("usuario"));
+document.getElementById('nombre').innerHTML= "<img src=" + usuario.imagen + " width=20>  " + usuario.nombre;
+

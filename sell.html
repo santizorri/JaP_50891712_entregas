@@ -9,6 +9,10 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
+    <!--Google-->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="744285213049-kflhhug8nuks38b1r6vdq07ejqt93aio.apps.googleusercontent.com">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -37,6 +41,8 @@
             <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
             <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
             <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+            <!-- Agrego el usuario que se conecta con su foto (en caso de entrar con google la foto) -->
+        <a class="py-2 d-none d-md-inline-block"><span class="btn btn-info"id="nombre"></span> </a>
         </div>
     </nav>
       <div class="container">
@@ -168,7 +174,7 @@
       <footer class="text-muted">
         <div class="container">
             <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio. <button class="btn btn-danger btn-lg" style="float: right;" onclick="desconectar();">Desconectar</button></p>
         </div>
       </footer>
       <div class="alert fade" role="alert" id="alertResult">
@@ -217,5 +223,8 @@
       <script src="js/dropzone.js"></script>
       <script src="js/init.js"></script>
       <script src="js/sell.js"></script>
+      <script src="js/logout.js"></script>
+      <script src="js/google.js"></script>
+      <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     </body>
 </html>

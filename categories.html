@@ -13,6 +13,11 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+
+     <!--Google-->
+     <meta name="google-signin-scope" content="profile email">
+     <meta name="google-signin-client_id" content="744285213049-kflhhug8nuks38b1r6vdq07ejqt93aio.apps.googleusercontent.com">
+
   </head>
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
@@ -22,6 +27,8 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <!-- Agrego el usuario que se conecta con su foto (en caso de entrar con google la foto) -->
+        <a class="py-2 d-none d-md-inline-block"><span class="btn btn-info"id="nombre"></span> </a>
       </div>
     </nav>
     <main role="main" class="pb-5">
@@ -79,7 +86,7 @@
           <a href="#">Volver arriba</a>
         </p>
         <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio. <button class="btn btn-danger btn-lg" style="float: right;" onclick="desconectar();">Desconectar</button></p>
       </div>
     </footer>
     <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
@@ -87,5 +94,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/categories.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/google.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
   </body>
 </html>
