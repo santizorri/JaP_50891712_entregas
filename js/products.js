@@ -49,7 +49,7 @@ function showCategoriesList(array){
             </div>
             `
             categorias.innerHTML = htmlContentToAppend;
-        }
+       }
     }
     
 }
