@@ -24,8 +24,12 @@ function showCategoriesList(array){
         array = categoriesArray;
     }
 
-    maximo = parseInt(document.getElementById('cantidadMax').value);
-    minimo = parseInt(document.getElementById('cantidadMin').value);
+    maximo = document.getElementById('cantidadMax').value;
+    minimo = document.getElementById('cantidadMin').value;
+
+    if(maximo == 0 || maximo == undefined){
+        maximo = 99999;
+    }
 
     let categorias = document.getElementById('cat-list-container');
     let htmlContentToAppend = " ";
@@ -48,8 +52,8 @@ function showCategoriesList(array){
                 </div>
             </div>
             `
-            categorias.innerHTML = htmlContentToAppend;
        }
+       categorias.innerHTML = htmlContentToAppend;
     }
     
 }
@@ -74,8 +78,8 @@ document.getElementById('buscador').addEventListener('keyup', ()=> {
 })
 //Aca restrablecemos todos los valores de nuevo y mostrarmos la lista sin filtros
 document.getElementById("limpiarfiltro").addEventListener("click", () => {
-    document.getElementById("cantidadMin").value = "0";
-    document.getElementById("cantidadMax").value = "99999";
+    document.getElementById("cantidadMin").value = "";
+    document.getElementById("cantidadMax").value = " ";
     document.getElementById("buscador").value = "";
     
     minimo = 0;
