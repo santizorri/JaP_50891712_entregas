@@ -36,7 +36,7 @@ function showCategoriesList(array){
     for(let category of array){
         if(category.cost >= minimo && category.cost <= maximo){
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
+            <a href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
@@ -50,9 +50,9 @@ function showCategoriesList(array){
                             <p class="mb-1">` + category.description + `</p>
                     </div>
                 </div>
-            </div>
+            </a>
             `
-       }
+        }
        categorias.innerHTML = htmlContentToAppend;
     }
     

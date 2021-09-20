@@ -13,6 +13,10 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/estrellas.css" rel="stylesheet">
+  <!--Sweet alert-->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,16 +27,84 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+       <!-- Agrego el usuario que se conecta con su foto (en caso de entrar con google la foto) -->
+       <a class="py-2 d-none d-md-inline-block"><span class="btn btn-info"id="nombre"></span> </a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 19/09/2021) y Entrega 4 (Fecha de entrega: 03/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Descripción de la categoría</h2>
+        <p class="lead">Encontrarás aquí toda la información de la categoría seleccionada.</p>
+        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
+          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
+      </div>
+      <h3 id="categoryName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Descripción</dt>
+        <dd>
+          <p id="categoryDescription"></p>
+        </dd>
+
+        <dt>Cantidad de productos en la categoría</dt>
+        <dd>
+          <p id="productCount"></p>
+        </dd>
+
+        <dt>Criterio para incluir productos en esta categoría</dt>
+        <dd>
+          <p id="productCriteria"></p>
+        </dd>
+
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          </div>
+        </dd>
+      </dl>
+      <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Volver a productos</a>
+    </div>
+    <div class="text-center p-4 container mt-5">
+      <h2>Comentarios</h2>
+      <hr class="my-3">
+    </div>
+    <div class="container">
+      <div>
+          <div class="list-group" id="com-list-container">
+          </div>   
+      </div>
+  </div>
+  <div class="p-4 container mt-5">
+    <h2>Comentar</h2>
+    <hr class="my-3">
+    <div class="container">
+      <!-- <label> Usuario: <input class="form-control" type="text" id="user" placeholder="Nombre de usuario"></label><br> -->
+      <label> Comentario del producto: </label>
+      <div class="form-group">
+        <textarea id="commentText" rows="2" cols="50" placeholder="Ingrese comentario aquí"></textarea> 
+        <span id="void_field"></span>
+      </div>
+      <form>
+        <p class="puntuacion">
+             <input id="radio1" type="radio" name="estrellas" value="5"><!--
+          --><label for="radio1"><i class="fa fa-star "></i></label><!--
+          --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+          --><label for="radio2"><i class="fa fa-star "></i></label><!--
+          --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+          --><label for="radio3"><i class="fa fa-star "></i></label><!--
+          --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+          --><label for="radio4"><i class="fa fa-star "></i></label><!--
+          --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+          --><label for="radio5"><i class="fa fa-star "></i></label>
+        </p>
+      </form>
+      <span id="IncompleteFields" style="color: red; font-weight: bold;"></span>
+      <button class="btn btn-primary" id="addCom" onclick="showUserComment();">Enviar comentario</button>
+      <button class="btn btn-danger" onclick="deleteComment();">Cancelar</button>
     </div>
   </div>
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
