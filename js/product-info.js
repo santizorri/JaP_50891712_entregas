@@ -7,16 +7,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             product = resultObj.data;
 
-            let categoryNameHTML = document.getElementById("categoryName");
-            let categoryDescriptionHTML = document.getElementById("categoryDescription");
-            let productCountHTML = document.getElementById("productCount");
-            let productCriteriaHTML = document.getElementById("productCriteria");
+            let productNameHTML = document.getElementById("productName");
+            let productDescriptionHTML = document.getElementById("productDescription");
+            let productCostHTML = document.getElementById("productCost");
+            let categoryHTML = document.getElementById("category");
+            let soldCountHTML = document.getElementById("soldCount");
 
-            categoryNameHTML.innerHTML = product.name;
-            categoryDescriptionHTML.innerHTML = product.description;
-            productCountHTML.innerHTML = product.productCount;
-            productCriteriaHTML.innerHTML = product.productCriteria;
-
+            productNameHTML.innerHTML = product.name;
+            productDescriptionHTML.innerHTML = product.description;
+            productCostHTML.innerHTML = product.cost + ' U$D';
+            categoryHTML.innerHTML = product.category;
+            soldCountHTML.innerHTML = product.soldCount;
+            console.log(product.soldCount);
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
         }
