@@ -1,6 +1,9 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+let product = {}
+let productsArray = [];
+
 document.addEventListener("DOMContentLoaded", function (e) {
 
     getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
@@ -18,16 +21,28 @@ document.addEventListener("DOMContentLoaded", function (e) {
             productCostHTML.innerHTML = product.cost + ' U$D';
             categoryHTML.innerHTML = product.category;
             soldCountHTML.innerHTML = product.soldCount;
-            console.log(product.soldCount);
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            //Obtengo cuales son los productos relacionados
+            relatedProductsNumber = product.relatedProducts;
+
+            getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    productsArray = resultObj.data;
+                    //Muestro las categorías ordenadas
+                    console.log(productsArray);
+                    showRelProd();
+                }
+            });
+
         }
     });
+
 });
 
 
 //Funcion que obtiene las imagenes y las agrega al html
-var product = {};
 
 function showImagesGallery(array) {
 
@@ -93,12 +108,12 @@ function showComments(array) {
 }
 
 //Funcion que recopila los datos del comentario y del usuario para agregarlo a la lista de comentarios
-function showUserComment(){
+function showUserComment() {
     let starChecked = document.getElementsByName('estrellas');
     let starNumber = undefined;
 
-    for(i = 0; i < 5; i++) {
-        if(starChecked[i].checked == true){
+    for (i = 0; i < 5; i++) {
+        if (starChecked[i].checked == true) {
             starNumber = starChecked[i].value;
         }
     }
@@ -111,7 +126,7 @@ function showUserComment(){
 
     if ((comment.user.trim() == '') || (comment.description.trim() == '') || (comment.score == undefined)) {
         IncompleteFields.innerHTML = "Por favor complete todos los campos.<br><br>";
-    } else if((comment.user.trim() !== '') && (comment.description.trim() !== '') && (comment.score !== undefined)){
+    } else if ((comment.user.trim() !== '') && (comment.description.trim() !== '') && (comment.score !== undefined)) {
         IncompleteFields.innerHTML = " ";
         comments.push(comment);
         Swal.fire({
@@ -119,7 +134,7 @@ function showUserComment(){
             title: '¡Comentario enviado con éxito!',
             showConfirmButton: false,
             timer: 1200
-          })
+        })
     }
 }
 
@@ -131,7 +146,7 @@ document.getElementById("addCom").addEventListener("click", () => {
 });
 
 //Funcion asociada al boton para cancelar comentario antes de ser enviado
-function deleteComment(){
+function deleteComment() {
     Swal.fire({
         title: '¿Quiere cancelar su comentario?',
         text: "¡En caso de querer comentar, deberá escribir su reseña nuevamente!",
@@ -141,18 +156,18 @@ function deleteComment(){
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: '¡Sí, bórralo!'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            '¡Comentario eliminado!',
-            '',
-            'success'
-          )
-          document.getElementById("commentText").value = '';
-                IncompleteFields.innerHTML = " ";
-                unselect();
+            Swal.fire(
+                '¡Comentario eliminado!',
+                '',
+                'success'
+            )
+            document.getElementById("commentText").value = '';
+            IncompleteFields.innerHTML = " ";
+            unselect();
         }
-      })
+    })
 }
 
 
@@ -164,25 +179,53 @@ function dateFilter() {
 }
 
 //Funcion la cual me escribe las estrellas dentro del html
-function califico(scoreNum){//
-  
+function califico(scoreNum) {//
+
     let stars = "";
 
-    for (let i=1; i<=5; i++){//La puntuación máxima es de 5, así que... cuento hasta 5
+    for (let i = 1; i <= 5; i++) {//La puntuación máxima es de 5, así que... cuento hasta 5
 
-        if (i <= scoreNum){ //Cuento y pregunto 
+        if (i <= scoreNum) { //Cuento y pregunto 
 
             stars += '<i style= "color: #ff8000" class="fas fa-star "></i>';//Pongo una estrellita llena
-            
-        }else {
-            stars +='<i style= "color: #ff8000" class="far fa-star "></i>';//Pongo el contorno
+
+        } else {
+            stars += '<i style= "color: #ff8000" class="far fa-star "></i>';//Pongo el contorno
         }
     }
-    
-return stars;
+
+    return stars;
 }
 
 //Borra las estrellas seleccionadas
-function unselect(){
-    document.querySelectorAll('[Type=radio]').forEach((x) => x.checked=false);
-  }
+function unselect() {
+    document.querySelectorAll('[Type=radio]').forEach((x) => x.checked = false);
+}
+
+
+//Entrega 4, parte de productos relacionados
+
+function showRelProd(){
+    let relProd = '';
+
+    relatedProductsNumber.forEach((numero) => {
+        relProd += `
+        <a href="products.html" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img src="` + productsArray[numero].imgSrc + `" alt="` + productsArray[numero].description + `" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">`+ productsArray[numero].name +`</h4>
+                        <small class="text-muted">` + productsArray[numero].soldCount + ` artículos</small>
+                    </div>
+                        <p class ="mb-1"> Precio: ` + productsArray[numero].cost + ` U$D </p> 
+                        <p class="mb-1">` + productsArray[numero].description + `</p>
+                </div>
+            </div>
+        </a>
+        `
+    })
+    document.getElementById('relatedProd').innerHTML = relProd;
+}
