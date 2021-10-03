@@ -23,15 +23,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
             soldCountHTML.innerHTML = product.soldCount;
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-            //Obtengo cuales son los productos relacionados
+            //Obtengo cuales son los productos relacionados (ENTREGA 4)
             relatedProductsNumber = product.relatedProducts;
 
             getJSONData(PRODUCTS_URL).then(function(resultObj){
                 if (resultObj.status === "ok")
                 {
                     productsArray = resultObj.data;
-                    //Muestro las categorías ordenadas
-                    console.log(productsArray);
+                    //Muestro los productos relacionados ordenadas
                     showRelProd();
                 }
             });
@@ -204,27 +203,27 @@ function unselect() {
 
 
 //Entrega 4, parte de productos relacionados
-
+//Esta funcion es donde en base a los datos obtenidos de los jason arma el html para mostrar. Utilizando un forEach
 function showRelProd(){
     let relProd = '';
 
     relatedProductsNumber.forEach((numero) => {
-        relProd += `
+        relProd += `<ul>
         <a href="products.html" class="list-group-item list-group-item-action">
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     <img src="` + productsArray[numero].imgSrc + `" alt="` + productsArray[numero].description + `" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">`+ productsArray[numero].name +`</h4>
-                        <small class="text-muted">` + productsArray[numero].soldCount + ` artículos</small>
                     </div>
                         <p class ="mb-1"> Precio: ` + productsArray[numero].cost + ` U$D </p> 
                         <p class="mb-1">` + productsArray[numero].description + `</p>
                 </div>
             </div>
-        </a>
+        </a> 
+        </ul>
         `
     })
     document.getElementById('relatedProd').innerHTML = relProd;
