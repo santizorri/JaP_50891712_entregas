@@ -36,6 +36,25 @@ function showCategoriesList(array){
     for(let category of array){
         if(category.cost >= minimo && category.cost <= maximo){
             htmlContentToAppend += `
+            <div class="col-md-6">
+                <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
+                <img class="bd-placeholder-img card-img-top" src="${category.imgSrc}">
+                <h3 class="m-4"> ${category.name} </h3>
+                <div class="card-body">
+                    <p class="card-text"> Precio: ${category.cost} U$D <small class="text-muted float-right"> ${category.soldCount} artículos</small></p>
+                    <p class="card-text"> ${category.description} </p>
+                </div>
+                </a>
+            </div>                
+            
+            `
+        }
+       categorias.innerHTML = htmlContentToAppend;
+    }
+    
+}
+
+/* ESTE ES EL CODGIO QUEIMPRIME LOS PRODUCTOS COMO LISTAS, RESPONSIVE
             <a href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
@@ -50,13 +69,7 @@ function showCategoriesList(array){
                             <p class="mb-1">` + category.description + `</p>
                     </div>
                 </div>
-            </a>
-            `
-        }
-       categorias.innerHTML = htmlContentToAppend;
-    }
-    
-}
+            </a>*/
 
 //TODAS LAS FUNCIONES AL MOMENTO DE LLAMARLAS
 

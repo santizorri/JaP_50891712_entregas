@@ -51,5 +51,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 //Este es el codigo para obetener los datos de usuario e imagen
 
 let usuario = JSON.parse( localStorage.getItem("usuario"));
-document.getElementById('nombre').innerHTML= "<img src=" + usuario.imagen + " width=20>  " + usuario.nombre;
+document.getElementById('nombre').innerHTML = "<img src=" + usuario.imagen + " width=20>  " + usuario.nombre;
+document.getElementById('nombreDeUsuario').innerHTML = usuario.nombre;
+document.getElementById('imagenDeUsuario').innerHTML = "<img src=" + usuario.imagen + " width=100>";
 
