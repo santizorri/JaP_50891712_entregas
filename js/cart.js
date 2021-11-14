@@ -92,11 +92,9 @@ function subTotal(){
 
     document.getElementById('total').innerHTML = total; // Mostramos el total en el HTML
 
-    //let total = 0;
     let subtotal = 0;
     let shippingCost = 0;
 
-    //subtotal = parseFloat(document.getElementById('total').innerHTML);
     subtotal = total;
 
     let shipping = document.getElementsByName('shippingRadio');
@@ -144,14 +142,14 @@ function paymentVerification(){
 
         paymentTypeFeedback.classList.remove("isInvalid");
         paymentTypeFeedback.classList.add("isValid");
-        paymentTypeFeedback.innerHTML = "Métodod de pago seleccionado: Tarjeta de Crédito." ;
+        paymentTypeFeedback.innerHTML = "Método de pago seleccionado: Tarjeta de Crédito." ;
    
         
     }else if(paymentRadios[0].checked === false && paymentRadios[1].checked){
 
         paymentTypeFeedback.classList.remove("isInvalid");
         paymentTypeFeedback.classList.add("isValid");
-        paymentTypeFeedback.innerHTML = "Métodod de pago seleccionado: Transferencia bancaria." ;
+        paymentTypeFeedback.innerHTML = "Método de pago seleccionado: Transferencia bancaria." ;
 
     }
 
@@ -163,7 +161,7 @@ function fieldsVerification(){
     let streetNumber = document.getElementById("shippingStreetNumber");
     let corner = document.getElementById("shippingCornerStreet");
 
-    if (street.value.trim() === "" || streetNumber.value.trim() === "" || corner.value.trim() === "") { //En este caso es cuando los dos campos estan vacios
+    if (street.value.trim() === "" || streetNumber.value.trim() === "" || corner.value.trim() === "") { 
 
         shippingStreet.classList.add("is-invalid");
         shippingStreetNumber.classList.add("is-invalid");
@@ -194,14 +192,14 @@ function fieldsVerification(){
         
     }else if(paymentRadios[0].checked && (cardNumber.value.trim() === "" || cardSecurityCode.value.trim() === "" || cardDueDate.value.trim() === "")){
 
-        paymentTypeIncomplete.innerHTML = "Complete todos los campos del metodo de pago.";
+        paymentTypeIncomplete.innerHTML = "Complete todos los campos del método de pago.";
         paymentTypeIncomplete.style.color = "red"; //Le damos color rojo al cartelito
         paymentTypeIncomplete.style.fontWeight = "bold"; //Lo ponemos en negrita
    
         
     }else if(paymentRadios[1].checked && bankAccountNumber.value.trim() === ""){
 
-        paymentTypeIncomplete.innerHTML = "Complete todos los campos del metodo de pago.";
+        paymentTypeIncomplete.innerHTML = "Complete todos los campos del método de pago.";
         paymentTypeIncomplete.style.color = "red"; //Le damos color rojo al cartelito
         paymentTypeIncomplete.style.fontWeight = "bold"; //Lo ponemos en negrita  
 
